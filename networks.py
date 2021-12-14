@@ -5,7 +5,7 @@ import numpy as np
 class DummyGraph:
     def as_default(self): return self
     def __enter__(self): pass
-    def __exit__(self,tyupe,value,traceback): pass
+    def __exit__(self,type,value,traceback): pass
 
 def set_session(sess): pass
 
