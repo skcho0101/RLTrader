@@ -162,6 +162,28 @@ class ReinforcementLearner:
         self.learning_cnt = 0
 
     def build_sample(self):
-        self.enviroment.observation
+        self.enviroment.observe()
+        if len(self.training_data) > self.training_data_idx +1:
+            self.training_data_idx += 1
+            self.sample = self.training_data.iloc[self.training_data_idx].tolist()
+            self.sample.extend(self.agent.get_states())
+            return self.sample
+        return None
+    @abc.abstractmethod
+    def get_batch(self,batch_size, delayed_reward, discount_factor):
+        #배치 학습 데이터 생성
+        x,y_value, y_policy = self.get_batch(batch_size, delayed_reward, discount_factor)
+
+        if len(x) >0:
+            loss = 0
+            if y_value is not None:
+                #가치 신경망 갱신
+                loss += self.value_network.train_on_batch(x,y_value)
+            if y_policy is not None:
+                #정책 신경망 갱신
+                loss += self.policy_network.train_on_batch(x,y_policy)
+
+            return loss
+        return None
 
 
