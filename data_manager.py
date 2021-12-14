@@ -18,6 +18,7 @@ COLUMNS_TRAINING_DATA_V1 = [
     'close_ma120_ratio', 'volume_ma120_ratio',
 ]
 
+
 COLUMNS_TRAINING_DATA_V1_RICH = [
     'open_lastclose_ratio', 'high_close_ratio', 'low_close_ratio',
     'close_lastclose_ratio', 'volume_lastvolume_ratio',
