@@ -12,19 +12,19 @@ def set_session(sess): pass
 graph = DummyGraph()
 sess = None
 
-'''if os.environ['KERAS_BACKEND'] == 'tensorflow':'''
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Dense, LSTM, Conv2D, \
-    BatchNormalization, Dropout, MaxPooling2D, Flatten
-from tensorflow.keras.optimizers import SGD
-import tensorflow as tf
-tf.compat.v1.disable_v2_behavior()
-print('Eager Mode: {}'.format(tf.executing_eagerly()))
-'''elif os.environ['KERAS_BACKEND'] == 'plaidml.keras.backend':
+if os.environ['KERAS_BACKEND'] == 'tensorflow':
+    from tensorflow.keras.models import Model
+    from tensorflow.keras.layers import Input, Dense, LSTM, Conv2D, \
+        BatchNormalization, Dropout, MaxPooling2D, Flatten
+    from tensorflow.keras.optimizers import SGD
+    import tensorflow as tf
+    tf.compat.v1.disable_v2_behavior()
+    print('Eager Mode: {}'.format(tf.executing_eagerly()))
+elif os.environ['KERAS_BACKEND'] == 'plaidml.keras.backend':
     from keras.models import Model
     from keras.layers import Input, Dense, LSTM, Conv2D, \
         BatchNormalization, Dropout, MaxPooling2D, Flatten
-    from keras.optimizers import SGD'''
+    from keras.optimizers import SGD
 
 class Network:
     lock = threading.Lock()
